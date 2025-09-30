@@ -7,7 +7,7 @@ export default function BookingSystemEnhanced() {
   const [bookingType, setBookingType] = useState<'consultation' | 'studio' | 'production'>('consultation')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [bookingStatus, setBookingStatus] = useState<'idle' | 'success' | 'error'>('idle')
-  const [statusMessage, setStatusMessage] = useState('')
+  const [statusMessage, setStatusMessage] = useState<string>('')
 
   // Fallback links if API is not configured
   const googleCalendarLink = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1234567890' // Replace with your actual link
