@@ -35,7 +35,9 @@ export default function Hero() {
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
             isVideoLoaded ? 'opacity-100' : 'opacity-0'
           }`}
+          poster="data:image/svg+xml,%3Csvg width='1920' height='1080' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='1920' height='1080' fill='%231A1A1A'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%234A4A4A' font-family='Inter' font-size='48' font-weight='bold'%3EW9 STUDIOS%3C/text%3E%3C/svg%3E"
         >
+          <source src="/w9-studios-landing-page/videos/hero-showreel.mp4" type="video/mp4" />
           <source src="/videos/hero-showreel.mp4" type="video/mp4" />
           {/* Fallback to placeholder */}
         </video>

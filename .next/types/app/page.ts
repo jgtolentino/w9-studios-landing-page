@@ -1,4 +1,4 @@
-// File: /Users/tbwa/Documents/W9/landing-page/app/page.tsx
+// File: /Users/tbwa/Documents/W9/w9-studios-landing-page/app/page.tsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
