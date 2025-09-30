@@ -66,7 +66,9 @@ export default function Contact() {
             <Phone className="text-studio-blue mt-1" size={20} />
             <div>
               <p className="font-medium">Direct Line</p>
-              <p className="text-gray-400">+63 917 123 4567</p>
+              <a href="tel:+639171234567" className="text-gray-400 hover:text-studio-blue transition-colors">
+                +63 917 123 4567
+              </a>
             </div>
           </div>
 
@@ -74,7 +76,9 @@ export default function Contact() {
             <Mail className="text-studio-blue mt-1" size={20} />
             <div>
               <p className="font-medium">Email</p>
-              <p className="text-gray-400">business@w9studio.net</p>
+              <a href="mailto:business@w9studio.net" className="text-gray-400 hover:text-studio-blue transition-colors">
+                business@w9studio.net
+              </a>
             </div>
           </div>
 
@@ -82,7 +86,9 @@ export default function Contact() {
             <MapPin className="text-studio-blue mt-1" size={20} />
             <div>
               <p className="font-medium">Studio Location</p>
-              <p className="text-gray-400">Makati CBD, Metro Manila</p>
+              <p className="text-gray-400">Warehouse 9, La Fuerza Plaza</p>
+              <p className="text-gray-400 text-sm">2241 Chino Roces Ave, Makati City</p>
+              <p className="text-gray-400 text-sm">Metro Manila, Philippines</p>
             </div>
           </div>
 

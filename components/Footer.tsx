@@ -92,21 +92,26 @@ export default function Footer() {
               <li className="flex items-start gap-2 text-gray-400">
                 <Phone size={16} className="mt-0.5 text-studio-blue" />
                 <div>
-                  <p>+63 917 123 4567</p>
+                  <a href="tel:+639171234567" className="hover:text-studio-blue transition-colors">
+                    +63 917 123 4567
+                  </a>
                   <p className="text-xs">Direct Producer Line</p>
                 </div>
               </li>
               <li className="flex items-start gap-2 text-gray-400">
                 <Mail size={16} className="mt-0.5 text-studio-blue" />
                 <div>
-                  <p>hello@w9studios.ph</p>
+                  <a href="mailto:business@w9studio.net" className="hover:text-studio-blue transition-colors">
+                    business@w9studio.net
+                  </a>
                   <p className="text-xs">2-4 hour response time</p>
                 </div>
               </li>
               <li className="flex items-start gap-2 text-gray-400">
                 <MapPin size={16} className="mt-0.5 text-studio-blue" />
                 <div>
-                  <p>Makati CBD</p>
+                  <p>Warehouse 9, La Fuerza Plaza</p>
+                  <p className="text-xs">2241 Chino Roces Ave, Makati City</p>
                   <p className="text-xs">Metro Manila, Philippines</p>
                 </div>
               </li>

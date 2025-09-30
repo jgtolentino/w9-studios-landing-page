@@ -144,7 +144,7 @@ export async function sendBookingConfirmation(
             <p>If you need to change your booking, please contact us at least 24 hours in advance:</p>
             <ul>
               <li>Email: <a href="mailto:business@w9studio.net">business@w9studio.net</a></li>
-              <li>Phone: +63 2 8888 8888</li>
+              <li>Phone: +63 968 269 9265</li>
             </ul>
 
             <div class="footer">
