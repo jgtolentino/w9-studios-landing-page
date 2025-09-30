@@ -1,0 +1,8 @@
+version: 1
+name: VercelAgentReviewer
+mission: "Pre-merge code review; block deploy on high-severity issues."
+tools: [vercel.review, repo.apply]
+outputs:
+  - ".agents/${GIT_SHA}/vercel-agent/report.{json,md}"
+guardrails:
+  - "No secrets printed; read-only except repo.apply by Arbiter."

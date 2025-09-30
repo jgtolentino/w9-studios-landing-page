@@ -1,0 +1,3 @@
+tools:
+  vercel.review: ["node", "scripts/review/run-review.js"]
+  repo.apply:    ["bash", "scripts/apply_artifacts.sh"]

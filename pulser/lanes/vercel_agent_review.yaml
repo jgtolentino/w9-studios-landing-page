@@ -1,0 +1,14 @@
+version: 1
+lane: vercel_agent_review
+entry: VercelAgentReviewer
+nodes:
+  VercelAgentReviewer:
+    agent: VercelAgentReviewer
+    goal: "Run PR review and emit report artifacts."
+    tools: [vercel.review]
+    write: true
+policies:
+  gates:
+    - "no_high_findings == true"
+outputs:
+  - ".agents/${GIT_SHA}/vercel-agent/*"
