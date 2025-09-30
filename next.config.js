@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/-w9-studios-landing-page',
+  basePath: '/w9-studios-landing-page',
   reactStrictMode: true,
   images: {
     unoptimized: true, // Required for static export
