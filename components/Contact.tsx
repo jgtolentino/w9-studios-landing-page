@@ -74,7 +74,7 @@ export default function Contact() {
             <Mail className="text-studio-blue mt-1" size={20} />
             <div>
               <p className="font-medium">Email</p>
-              <p className="text-gray-400">hello@w9studios.ph</p>
+              <p className="text-gray-400">business@w9studio.net</p>
             </div>
           </div>
 

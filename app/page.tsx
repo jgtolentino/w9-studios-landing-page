@@ -8,6 +8,7 @@ import Portfolio from '@/components/Portfolio'
 import Services from '@/components/Services'
 import About from '@/components/About'
 import Contact from '@/components/Contact'
+import BookingSystem from '@/components/BookingSystem'
 import Showreel from '@/components/Showreel'
 import Stats from '@/components/Stats'
 import Footer from '@/components/Footer'
@@ -105,14 +106,28 @@ export default function Home() {
           <About />
         </section>
 
+        {/* Booking & Reservation Section */}
+        <section id="booking" className="py-24 bg-studio-darker">
+          <div className="container">
+            <h2 className="text-4xl md:text-6xl font-bold mb-4 text-center">
+              Book Your <span className="text-gradient">Production</span>
+            </h2>
+            <p className="text-xl text-gray-400 text-center mb-12 max-w-3xl mx-auto">
+              Reserve studio time, schedule consultations, or book full production services.
+              Integrated with Google Workspace for seamless scheduling.
+            </p>
+            <BookingSystem />
+          </div>
+        </section>
+
         {/* Contact Section with qualification form */}
-        <section id="contact" className="py-24 bg-studio-darker">
+        <section id="contact" className="py-24 bg-studio-black">
           <div className="container">
             <h2 className="text-4xl md:text-6xl font-bold mb-4 text-center">
               Start Your <span className="text-gradient">Project</span>
             </h2>
             <p className="text-xl text-gray-400 text-center mb-12 max-w-3xl mx-auto">
-              2-4 hour response time. Direct line to our producers. 
+              2-4 hour response time. Direct line to our producers.
               Let's create something extraordinary together.
             </p>
             <Contact />
