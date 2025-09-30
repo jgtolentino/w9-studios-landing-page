@@ -2,6 +2,9 @@
 
 import { useState } from 'react'
 import { Play, ExternalLink } from 'lucide-react'
+import ProjectModal from './ProjectModal'
+import { projectPalettes } from '../utils/mediaGenerator'
+import { StaggerChildren, StaggerChild, FadeInWhenVisible } from './ScrollAnimations'
 
 interface Project {
   id: number
@@ -18,8 +21,14 @@ interface Project {
     engagement?: string
     roi?: string
   }
+  details?: {
+    challenge: string
+    solution: string
+    results: string
+  }
 }
 
+// Extended project data with details
 const projects: Project[] = [
   {
     id: 1,
@@ -35,6 +44,11 @@ const projects: Project[] = [
       views: '2.5M',
       engagement: '40% increase',
       roi: '3.2x'
+    },
+    details: {
+      challenge: 'Create a campaign that resonates with Filipino families during the summer season while maintaining brand authenticity.',
+      solution: 'We crafted a heartwarming narrative centered around family traditions, using cinematic techniques to capture genuine emotions.',
+      results: 'The campaign achieved 2.5M views in the first week and drove a 40% increase in summer menu sales.'
     }
   },
   {
@@ -114,6 +128,8 @@ export default function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [selectedIndustry, setSelectedIndustry] = useState('All')
   const [hoveredProject, setHoveredProject] = useState<number | null>(null)
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const filteredProjects = projects.filter(project => {
     const categoryMatch = selectedCategory === 'All' || project.category === selectedCategory
@@ -160,14 +176,20 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* Projects Grid - Asymmetric 8-column Buck.co style */}
-      <div className="grid grid-cols-8 gap-4 md:gap-6 lg:gap-8">
+      {/* Projects Grid - Asymmetric 8-column Buck.co style with animations */}
+      <StaggerChildren className="grid grid-cols-8 gap-4 md:gap-6 lg:gap-8">
         {filteredProjects.map((project, index) => {
           // Alternate between 3-span and 5-span for asymmetry (Buck pattern)
           const isFeature = index % 3 === 0;
           const span = isFeature ? 'col-span-8 md:col-span-5' : 'col-span-8 md:col-span-3';
 
+          // Get dynamic color palette for this project
+          const projectKey = project.client.toLowerCase().replace(/[^a-z]/g, '');
+          const colors = projectPalettes[projectKey as keyof typeof projectPalettes] ||
+                         { primary: '#0066FF', secondary: '#E84141', accent: '#ffffff' };
+
           return (
+          <StaggerChild key={project.id}>
           <div
             key={project.id}
             className={`project-card group relative overflow-hidden bg-studio-gray cursor-none transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${span}`}
@@ -176,11 +198,29 @@ export default function Portfolio() {
             }}
             onMouseEnter={() => setHoveredProject(project.id)}
             onMouseLeave={() => setHoveredProject(null)}
+            onClick={() => {
+              setSelectedProject(project);
+              setIsModalOpen(true);
+            }}
           >
-            {/* Thumbnail */}
+            {/* Thumbnail with dynamic colors */}
             <div className="relative aspect-video overflow-hidden bg-studio-darker">
-              {/* Placeholder image */}
-              <div className="absolute inset-0 bg-gradient-to-br from-studio-blue/20 to-studio-red/20" />
+              {/* Dynamic gradient based on project colors */}
+              <div
+                className="absolute inset-0 transition-all duration-500"
+                style={{
+                  background: hoveredProject === project.id
+                    ? `linear-gradient(135deg, ${colors.primary}40, ${colors.secondary}40)`
+                    : `linear-gradient(135deg, ${colors.primary}20, ${colors.secondary}20)`
+                }}
+              />
+
+              {/* Actual thumbnail image */}
+              <img
+                src={project.thumbnail}
+                alt={project.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
               
               {/* Hover Overlay */}
               <div className={`absolute inset-0 bg-black/80 transition-opacity duration-300 ${
@@ -246,24 +286,49 @@ export default function Portfolio() {
                 </div>
               )}
 
-              {/* View Case Study Link */}
-              <a
-                href={`/portfolio/${project.id}`}
+              {/* View Case Study Button */}
+              <button
                 className="inline-flex items-center gap-2 text-sm font-medium text-studio-blue hover:text-studio-white transition-colors pt-2"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedProject(project);
+                  setIsModalOpen(true);
+                }}
               >
                 View Case Study <ExternalLink size={16} />
-              </a>
+              </button>
             </div>
           </div>
+          </StaggerChild>
         )})}
-      </div>
+      </StaggerChildren>
 
       {/* Load More Button */}
-      <div className="text-center pt-8">
+      <FadeInWhenVisible className="text-center pt-8">
         <button className="button-secondary">
           Load More Projects
         </button>
-      </div>
+      </FadeInWhenVisible>
+
+      {/* Project Modal */}
+      <ProjectModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedProject(null);
+        }}
+        onNext={() => {
+          const currentIndex = filteredProjects.findIndex(p => p.id === selectedProject?.id);
+          const nextIndex = (currentIndex + 1) % filteredProjects.length;
+          setSelectedProject(filteredProjects[nextIndex]);
+        }}
+        onPrevious={() => {
+          const currentIndex = filteredProjects.findIndex(p => p.id === selectedProject?.id);
+          const prevIndex = currentIndex - 1 < 0 ? filteredProjects.length - 1 : currentIndex - 1;
+          setSelectedProject(filteredProjects[prevIndex]);
+        }}
+      />
     </div>
   )
 }

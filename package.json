@@ -39,6 +39,7 @@
     "typescript": "^5"
   },
   "devDependencies": {
+    "canvas": "3.2.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.0",
     "gh-pages": "6.3.0"
