@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -e
+changed="$(git diff --cached --name-only --diff-filter=ACM | grep -E "\.(js|jsx|ts|tsx|json|md|yml|yaml)$" || true)"
+[ -z "$changed" ] && exit 0
+yarn -s lint || true

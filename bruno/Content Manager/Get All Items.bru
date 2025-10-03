@@ -1,0 +1,37 @@
+meta {
+  name: Get All Items
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/{{api_version}}/data/collections/{{collection_id}}/items
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+headers {
+  wix-site-id: {{site_id}}
+}
+
+params:query {
+  limit: 100
+  offset: 0
+}
+
+docs {
+  # Get All Items from Collection
+
+  Fetches all items from a specified Wix CMS collection.
+
+  Required variables:
+  - collection_id: The ID of the CMS collection
+  - site_id: Your Wix site ID
+  - access_token: OAuth access token
+
+  See: https://dev.wix.com/docs/rest/api-reference/wix-data/wix-data/collection/query-data-items
+}

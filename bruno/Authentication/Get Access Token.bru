@@ -1,0 +1,50 @@
+meta {
+  name: Get Access Token
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://www.wix.com/oauth/access
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "grant_type": "client_credentials",
+    "client_id": "{{client_id}}",
+    "client_secret": "{{client_secret}}"
+  }
+}
+
+headers {
+  Content-Type: application/json
+}
+
+tests {
+  test("Status is 200", function() {
+    expect(res.status).to.equal(200);
+  });
+
+  test("Access token received", function() {
+    const data = res.getBody();
+    expect(data.access_token).to.be.a('string');
+    bru.setVar("access_token", data.access_token);
+  });
+}
+
+docs {
+  # OAuth Access Token
+
+  Exchanges client credentials for an access token.
+
+  This request automatically saves the access token to the `access_token` variable
+  for use in subsequent requests.
+
+  Required vault secrets:
+  - wix_client_id
+  - wix_client_secret
+
+  See: https://dev.wix.com/docs/rest/articles/getting-started/authentication
+}

@@ -1,0 +1,13 @@
+{
+  "allowed": {
+    "rpc": ["get_dashboard_kpis", "search_creatives", "list_transactions"],
+    "select": ["public.kpis_view", "public.creatives_view"],
+    "limits": { "maxRows": 5000, "timeoutMs": 8000 }
+  },
+  "denied": {
+    "sqlPatterns": ["ALTER ", "DROP ", "GRANT ", "CREATE ", "TRUNCATE ", "DELETE ", "UPDATE ", "INSERT "]
+  },
+  "audit": {
+    "logFile": ".claude/logs/supabase_mcp_audit.log"
+  }
+}

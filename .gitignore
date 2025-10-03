@@ -52,3 +52,7 @@ next-env.d.ts
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+# Claude MCP
+.claude/logs/*
+migration_artifacts/*

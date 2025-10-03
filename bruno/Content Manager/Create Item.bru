@@ -1,0 +1,47 @@
+meta {
+  name: Create Item
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/{{api_version}}/data/collections/{{collection_id}}/items
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+headers {
+  wix-site-id: {{site_id}}
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "dataItem": {
+      "data": {
+        "title": "Sample Title",
+        "description": "Sample description",
+        "slug": "sample-slug"
+      }
+    }
+  }
+}
+
+docs {
+  # Create New Item
+
+  Creates a new item in a Wix CMS collection.
+
+  Required variables:
+  - collection_id: The ID of the CMS collection
+  - site_id: Your Wix site ID
+  - access_token: OAuth access token
+
+  Update the body with your actual field names and values.
+
+  See: https://dev.wix.com/docs/rest/api-reference/wix-data/wix-data/data-items/insert-data-item
+}
